@@ -33,18 +33,19 @@ function PlanetaryHoursTable({ hoursData, darkMode }) {
   // Estilos para fondo y texto
   const bgColor = darkMode ? '#212529' : '#adb5bd';
   const textColor = darkMode ? '#fff' : '#212529';
+  const borderColor = '#373b3e'; // Mismo color de borde para ambos modos
 
   const tableStyles = {
     backgroundColor: `${bgColor} !important`,
     color: `${textColor} !important`,
     marginBottom: 0,
-    borderColor: darkMode ? '#373b3e' : undefined
+    borderColor: `${borderColor} !important`
   };
 
   const cellStyles = {
     backgroundColor: `${bgColor} !important`,
     color: `${textColor} !important`,
-    borderColor: darkMode ? '#373b3e' : undefined
+    borderColor: `${borderColor} !important`
   };
 
   return (
@@ -53,7 +54,7 @@ function PlanetaryHoursTable({ hoursData, darkMode }) {
       style={{
         backgroundColor: bgColor,
         color: textColor,
-        border: darkMode ? 'none' : '1px solid rgba(0,0,0,.125)' // Opcional: quitar borde en modo oscuro
+        border: darkMode ? 'none' : `1px solid ${borderColor}` // Opcional: quitar borde en modo oscuro
       }}
     >
       <Card.Body>
@@ -81,23 +82,24 @@ function PlanetaryHoursTable({ hoursData, darkMode }) {
           bordered
           hover
           responsive
+          className="border-secondary"
           style={tableStyles}
         >
           <thead>
             <tr>
-              <th style={cellStyles}>Hora</th>
-              <th style={cellStyles}>Planeta</th>
-              <th style={cellStyles}>Inicio</th>
-              <th style={cellStyles}>Fin</th>
+              <th className="border-secondary" style={cellStyles}>Hora</th>
+              <th className="border-secondary" style={cellStyles}>Planeta</th>
+              <th className="border-secondary" style={cellStyles}>Inicio</th>
+              <th className="border-secondary" style={cellStyles}>Fin</th>
             </tr>
           </thead>
           <tbody>
             {hours.map((hour, index) => (
               <tr key={index}>
-                <td style={cellStyles}>{hour.hour}</td>
-                <td style={cellStyles}>{planetNamesES[hour.planet] || hour.planet}</td>
-                <td style={cellStyles}>{hour.start}</td>
-                <td style={cellStyles}>{hour.end}</td>
+                <td className="border-secondary" style={cellStyles}>{hour.hour}</td>
+                <td className="border-secondary" style={cellStyles}>{planetNamesES[hour.planet] || hour.planet}</td>
+                <td className="border-secondary" style={cellStyles}>{hour.start}</td>
+                <td className="border-secondary" style={cellStyles}>{hour.end}</td>
               </tr>
             ))}
           </tbody>

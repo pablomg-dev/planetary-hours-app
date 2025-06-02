@@ -1,6 +1,6 @@
 # Calculadora de Horas Planetarias 🌍⏰
 
-Una aplicación web para calcular las horas planetarias tradicionales basadas en la ubicación y fecha del usuario.
+Una aplicación web para calcular las horas planetarias tradicionales (caldeas) basadas en la ubicación y fecha del usuario.
 
 ## ✨ Características
 
