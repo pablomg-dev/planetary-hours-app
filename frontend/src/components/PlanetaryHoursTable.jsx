@@ -28,7 +28,12 @@ function PlanetaryHoursTable({ hoursData, darkMode }) {
     return <p>No hay datos de horas planetarias para mostrar.</p>;
   }
 
-  const { dayRuler, hours, city } = hoursData;
+  const { dayRuler, nextDayRuler, hours, city, currentPlanetaryDay } = hoursData;
+
+  // Obtener la hora del amanecer (primera hora del día)
+  const sunrise = currentPlanetaryDay?.start || hours[0]?.start;
+  const nextSunrise = currentPlanetaryDay?.end;
+  const isBeforeSunrise = currentPlanetaryDay?.isBeforeSunrise;
 
   // Estilos para fondo y texto
   const bgColor = darkMode ? '#212529' : '#adb5bd';
@@ -48,6 +53,30 @@ function PlanetaryHoursTable({ hoursData, darkMode }) {
     borderColor: `${borderColor} !important`
   };
 
+  // Estilo para el texto del amanecer
+  const infoStyle = {
+    fontSize: '0.9em',
+    color: darkMode ? '#adb5bd' : '#666',
+    marginBottom: '0.5rem'
+  };
+
+  // Función para mostrar el regente con su símbolo
+  const renderRegent = (regent) => (
+    <>
+      {planetNamesES[regent] || regent}
+      {' '}
+      <span style={{
+        fontSize: '1.2em',
+        verticalAlign: '-0.1em',
+        display: 'inline-block',
+        lineHeight: '1',
+        marginLeft: '0.1em'
+      }}>
+        {planetSymbols[regent]}
+      </span>
+    </>
+  );
+
   return (
     <Card
       className="my-4"
@@ -58,24 +87,14 @@ function PlanetaryHoursTable({ hoursData, darkMode }) {
       }}
     >
       <Card.Body>
-        {city && (
+        {city && city.trim() !== '' && (
           <Card.Subtitle className="mb-2 text-muted text-center" style={{ color: textColor }}>
             Ciudad: <strong>{city}</strong>
           </Card.Subtitle>
         )}
-        <p className="mb-3 text-center" style={{ color: textColor }}>
+        <p className="mb-2 text-center" style={{ color: textColor }}>
           Regente del Día: <strong>
-            {planetNamesES[dayRuler] || dayRuler}
-            {' '}
-            <span style={{
-              fontSize: '1.7em',
-              verticalAlign: '-0.15em',  // Cambiado de -0.25em a -0.15em
-              display: 'inline-block',   // Cambiado de inline a inline-block
-              lineHeight: '1',
-              marginLeft: '0.1em'        // Agregado un pequeño margen
-            }}>
-              {planetSymbols[dayRuler]}
-            </span>
+            {renderRegent(dayRuler)}
           </strong>
         </p>
         <Table
