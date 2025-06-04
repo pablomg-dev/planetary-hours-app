@@ -65,7 +65,7 @@ app.get('/api/planetary-hours', (req, res) => {
         });
 
         // Define el orden Caldeo de los planetas
-        const planetaryOrder = ['Sun', 'Venus', 'Mercury', 'Moon', 'Saturn', 'Jupiter', 'Mars'];
+        const planetaryOrder = ['Saturn', 'Jupiter', 'Mars', 'Sun', 'Venus', 'Mercury', 'Moon'];
 
         // Mapeo de días de la semana según Luxon y el sistema tradicional
         // Luxon: 1 = Lunes ... 7 = Domingo
