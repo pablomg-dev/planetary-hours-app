@@ -29,7 +29,17 @@ app.get('/api/planetary-hours', (req, res) => {
     try {
         // Convierte la fecha ISO (YYYY-MM-DD) y la zona horaria a un objeto DateTime de Luxon
         const targetDate = DateTime.fromISO(date, { zone: timezone });
-        console.log('Target date in timezone:', targetDate.toISO());
+        console.log('Análisis detallado de fecha:', {
+            fechaOriginal: date,
+            zonaHoraria: timezone,
+            fechaISO: targetDate.toISO(),
+            fechaUTC: targetDate.toUTC().toISO(),
+            offset: targetDate.offset,
+            weekday: targetDate.weekday,
+            weekdayUTC: targetDate.toUTC().weekday,
+            hora: targetDate.toFormat('HH:mm:ss'),
+            horaUTC: targetDate.toUTC().toFormat('HH:mm:ss')
+        });
 
         // Verifica si la fecha es válida
         if (!targetDate.isValid) {
@@ -55,18 +65,18 @@ app.get('/api/planetary-hours', (req, res) => {
         });
 
         // Define el orden Caldeo de los planetas
-        const planetaryOrder = ['Saturn', 'Jupiter', 'Mars', 'Sun', 'Venus', 'Mercury', 'Moon'];
+        const planetaryOrder = ['Sun', 'Venus', 'Mercury', 'Moon', 'Saturn', 'Jupiter', 'Mars'];
 
-        // Mapeo de días de la semana según Luxon
+        // Mapeo de días de la semana según Luxon y el sistema tradicional
         // Luxon: 1 = Lunes ... 7 = Domingo
         const dayRulerMap = new Map([
+            [7, 'Sun'],     // Domingo
             [1, 'Moon'],    // Lunes
             [2, 'Mars'],    // Martes
             [3, 'Mercury'], // Miércoles
             [4, 'Jupiter'], // Jueves
             [5, 'Venus'],   // Viernes
-            [6, 'Saturn'],  // Sábado
-            [7, 'Sun']      // Domingo
+            [6, 'Saturn']   // Sábado
         ]);
 
         // Usar directamente la fecha objetivo para el regente
@@ -77,7 +87,13 @@ app.get('/api/planetary-hours', (req, res) => {
             fechaConsultada: targetDate.toFormat('yyyy-MM-dd'),
             diaSemana: weekday,
             nombreDia: targetDate.toFormat('EEEE'),
-            regente: dayRuler
+            nombreDiaLocal: targetDate.setLocale('es').toFormat('EEEE'),
+            regente: dayRuler,
+            weekInfo: {
+                weekday: targetDate.weekday,
+                weekdayLong: targetDate.weekdayLong,
+                weekdayShort: targetDate.weekdayShort
+            }
         });
 
         if (!dayRuler) {

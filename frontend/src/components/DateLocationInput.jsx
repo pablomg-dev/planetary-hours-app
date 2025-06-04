@@ -294,7 +294,7 @@ function DateLocationInput({ onDataChange, darkMode }) {
 
   return (
     <div style={{ backgroundColor: darkMode ? '#212529' : '#adb5bd', borderRadius: 12 }}>
-      <Form className="mb-4 p-3">
+      <Form className="mb-3 p-3">
         <Row className="g-3 align-items-end justify-content-center">
           <Col xs={12} md={5}>
             <Form.Group controlId="date-picker">
