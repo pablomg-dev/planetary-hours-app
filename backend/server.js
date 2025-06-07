@@ -79,10 +79,10 @@ app.get('/api/planetary-hours', (req, res) => {
             [6, 'Saturn']   // Sábado
         ]);
 
-        // Usar directamente la fecha objetivo para el regente
-        const weekday = targetDate.weekday;
+        // Usar el día de la semana del amanecer para determinar el regente del día astrológico
+        const weekday = sunriseToday.weekday;
         const dayRuler = dayRulerMap.get(weekday);
-        
+
         console.log('Debug - Cálculo de regente:', {
             fechaConsultada: targetDate.toFormat('yyyy-MM-dd'),
             diaSemana: weekday,
@@ -102,8 +102,8 @@ app.get('/api/planetary-hours', (req, res) => {
                 availableRulers: Array.from(dayRulerMap.keys()),
                 fecha: targetDate.toFormat('yyyy-MM-dd')
             });
-            return res.status(500).json({ 
-                error: `Could not determine day ruler. Invalid weekday: ${weekday} for date: ${targetDate.toFormat('yyyy-MM-dd')}` 
+            return res.status(500).json({
+                error: `Could not determine day ruler. Invalid weekday: ${weekday} for date: ${targetDate.toFormat('yyyy-MM-dd')}`
             });
         }
 
@@ -113,7 +113,7 @@ app.get('/api/planetary-hours', (req, res) => {
 
         // Asegúrate de que los intervalos sean válidos para evitar errores
         if (!dayInterval.isValid || !nightInterval.isValid) {
-             return res.status(500).json({ error: 'Could not calculate valid day/night intervals. Check sunrise/sunset times.' });
+            return res.status(500).json({ error: 'Could not calculate valid day/night intervals. Check sunrise/sunset times.' });
         }
 
         const dayHourDurationMillis = dayInterval.length('milliseconds') / 12;
@@ -158,10 +158,10 @@ app.get('/api/planetary-hours', (req, res) => {
         }
 
         // Envía los resultados al frontend
-        res.json({ 
+        res.json({
             dayRuler: dayRuler,
             nextDayRuler: dayRulerMap.get(targetDate.plus({ days: 1 }).weekday),
-            hours: results, 
+            hours: results,
             timezone,
             city: cityName,
             currentPlanetaryDay: {
