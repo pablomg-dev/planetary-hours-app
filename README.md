@@ -1,102 +1,65 @@
-# Calculadora de Horas Planetarias 🌍⏰
+# Calculadora de Horas Planetarias �🌑
 
-Una aplicación web para calcular las horas planetarias tradicionales (caldeas) basadas en la ubicación y fecha del usuario.
+Una aplicación web moderna y profesional para calcular las horas planetarias tradicionales (caldeas) basadas en la ubicación astronómica y fecha del usuario. Refactorizada integralmente para ofrecer máxima solidez técnica y una experiencia de usuario premium.
 
-## ✨ Características
+## ✨ Características Principales
 
-- ⚡ Cálculo automático de horas planetarias basado en salida y puesta del sol
-- 📍 Detección automática de ubicación del usuario
-- 🔍 Búsqueda de ciudades con autocompletado
-- 🌓 Modo claro/oscuro
-- ⏰ Visualización de hora actual
-- ♄ Símbolos planetarios tradicionales
-- 📱 Interfaz responsiva
-- 🌐 Soporte multiidioma (nombres de planetas en español)
+- **⚡ Arquitectura SOLID**: Backend desacoplado con servicios especializados para cálculos y geolocalización.
+- **🛡️ Full TypeScript**: Tipado estricto en todo el flujo de datos para prevenir errores en tiempo de ejecución.
+- **🎨 Diseño Premium**: Interfaz mística con estética *glass-morphism*, modo oscuro profundo y tipografías optimizadas (`Outfit` e `Inter`).
+- **🌍 Geolocalización Avanzada**: Detección automática y buscador de ciudades mediante un proxy seguro para evitar errores de CORS.
+- **⏰ Tiempo Real**: Reloj dinámico sincronizado con la zona horaria seleccionada.
+- **♄ Simbolismo Tradicional**: Uso de glifos astronómicos y nombres tradicionales en español.
 
-## 🛠️ Tecnologías
+## 🛠️ Stack Tecnológico
 
 ### Frontend
-- React
-- Bootstrap 5
-- React Bootstrap
-- Luxon (manejo de fechas y zonas horarias)
-- React-Select (búsqueda de ciudades)
-- React-DatePicker
-- Axios
+- **React 18** + **Vite** (TypeScript)
+- **Bootstrap 5** & **React Bootstrap**
+- **Custom Hooks** para lógica de estado (`useClock`, `useGeolocation`)
+- **Luxon** (Gestión de zonas horarias complejas)
+- **React-Select** & **React-DatePicker** (UI refinada)
 
 ### Backend
-- Node.js
-- Express
-- SunCalc (cálculos astronómicos)
-- Luxon
-- CORS
-- dotenv
+- **Node.js** + **Express** (TypeScript)
+- **tsx** (Ejecutor moderno de TS con soporte ESM)
+- **SunCalc** (Algoritmos astronómicos de precisión)
+- **CORS** & **Dotenv**
+- **Proxy Nominatim**: Búsqueda de ciudades segura con cumplimiento de políticas de User-Agent.
 
-## 📦 Instalación
+## 📦 Instalación y Despliegue
 
-1. Clona el repositorio:
+### Requisitos Previos
+- Node.js (v18 o superior recomendado)
+- npm o yarn
+
+### Configuración del Repositorio
 ```bash
 git clone https://github.com/your-username/planetary-hours-app.git
 cd planetary-hours-app
 ```
 
-2. Instala las dependencias del backend:
-```bash
-cd backend
-npm install
-```
+### Backend Setup
+1. Accede a la carpeta: `cd backend`
+2. Instala dependencias: `npm install`
+3. Configura el entorno: Crea un `.env` con `PORT=5000`
+4. Ejecución:
+   - Desarrollo: `npm run dev` (Hot reloading con tsx)
+   - Producción: `npm run build && npm start`
 
-3. Instala las dependencias del frontend:
-```bash
-cd ../frontend
-npm install
-```
+### Frontend Setup
+1. Accede a la carpeta: `cd frontend`
+2. Instala dependencias: `npm install`
+3. Ejecución:
+   - Desarrollo: `npm run dev`
+   - Producción: `npm run build`
 
-## ⚙️ Configuración
+## 🚀 Uso de la Aplicación
 
-1. Crea un archivo `.env` en la carpeta `backend`:
-```env
-PORT=5000
-```
+1. Asegúrate de que el **Backend** esté corriendo en `http://localhost:5000`.
+2. Inicia el **Frontend** y ábrelo en `http://localhost:5173`.
+3. Permite el acceso a la ubicación para carga automática o usa el buscador manual para cualquier ciudad del mundo.
+4. Explora la tabla de regentes diurnos y nocturnos con el indicador de hora actual ⚡.
 
-2. Asegúrate de que el frontend esté configurado para conectarse al backend:
-```javascript
-// frontend/src/config.js
-export const API_URL = 'http://localhost:5000';
-```
-
-## 🚀 Uso
-
-1. Inicia el backend:
-```bash
-cd backend
-npm start
-```
-
-2. Inicia el frontend:
-```bash
-cd frontend
-npm run dev
-```
-
-3. Abre tu navegador en `http://localhost:5173`
-
-## 📝 Características planeadas
-
-- [ ] Soporte para más idiomas
-- [ ] Gráficos de los aspectos planetarios
-- [ ] Exportación de datos a PDF/CSV
-- [ ] PWA para uso offline
-- [ ] Widget para sitios web
-
-## 🤝 Contribuir
-
-Las contribuciones son bienvenidas. Por favor, abre un issue primero para discutir los cambios que te gustaría hacer.
-
-## 📄 Licencia
-
-[ISC](https://choosealicense.com/licenses/isc/)
-
-## 👤 Autor
-
-Pablo MG
+---
+**Desarrollado con ❤️ por Pablo MG**
